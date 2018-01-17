@@ -10,7 +10,7 @@ def get_sql(dir_for_search):
     return found_files, len(found_files)
 
 
-def search(files, dir_for_search):
+def search_by_string(files, dir_for_search):
     found_files = set()
     string_for_search = input('Введите строку: ').lower()
     for filename in files:
@@ -31,7 +31,7 @@ def find_sql_by_string():
     if __name__ == '__main__':
         found_files, count = get_sql(dir_for_search)
         while count > 1:
-            found_files, count = search(found_files, dir_for_search)
+            found_files, count = search_by_string(found_files, dir_for_search)
 
 
 find_sql_by_string()
