@@ -5,7 +5,7 @@ def get_sql(dir_for_search):
     found_files = set()
     for root, dirs, files in os.walk(dir_for_search):
         for filename in files:
-            if filename[-4:] == '.sql':
+            if filename.endswith('.sql'):
                 found_files.add(filename)
     return found_files, len(found_files)
 
@@ -28,10 +28,10 @@ def find_sql_by_string():
     migrations = 'Migrations/'
     current_dir = os.path.dirname(os.path.abspath(__file__))
     dir_for_search = os.path.dirname(os.path.join(current_dir, migrations))
-    if __name__ == '__main__':
-        found_files, count = get_sql(dir_for_search)
-        while count > 1:
-            found_files, count = search_by_string(found_files, dir_for_search)
+    found_files, count = get_sql(dir_for_search)
+    while count > 1:
+        found_files, count = search_by_string(found_files, dir_for_search)
 
 
-find_sql_by_string()
+if __name__ == '__main__':
+    find_sql_by_string()
