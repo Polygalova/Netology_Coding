@@ -30,7 +30,6 @@ def print_total_mutual():
     ids = [int(num) for num in input('Введите идентификаторы пользователей через запятую ').split(', ')]
     n = len(ids)
     pairs_mutual = []
-
     for i in range(0, n, 2):
         try:
             pairs_mutual.append(get_mutual_friends(token, ids[i], ids[i+1]))
