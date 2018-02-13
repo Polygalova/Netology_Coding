@@ -3,14 +3,12 @@ import math
 
 
 def mid_temp_celsius(path):
-    temp_in = []
+    temp_out = []
+    client = osa.Client('http://www.webservicex.net/ConvertTemperature.asmx?WSDL')
     with open(path) as f:
         for line in f.readlines():
-            temp_in.append(int(line.split()[0]))
-    client = osa.Client('http://www.webservicex.net/ConvertTemperature.asmx?WSDL')
-    temp_out = []
-    for temp in temp_in:
-        temp_out.append(client.service.ConvertTemp(temp, 'degreeFahrenheit', 'degreeCelsius'))
+            temp_in = int(line.split()[0])
+            temp_out.append(client.service.ConvertTemp(temp_in, 'degreeFahrenheit', 'degreeCelsius'))
     print('Средняя температура за неделю: {} градусов Цельсия.'.format(sum(temp_out)/len(temp_out)))
 
 
@@ -37,6 +35,3 @@ def amount_dist_km(path):
 mid_temp_celsius('temps.txt')
 travel_amount('currencies.txt')
 amount_dist_km('travel.txt')
-
-
-
